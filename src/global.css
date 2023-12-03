@@ -1,80 +1,48 @@
-/**
- * WHAT IS THIS FILE?
- *
- * Globally applied styles. No matter which components are in the page or matching route,
- * the styles in here will be applied to the Document, without any sort of CSS scoping.
- *
- */
-
-:root {
-  --qwik-dark-blue: #006ce9;
-  --qwik-light-blue: #18b6f6;
-  --qwik-light-purple: #ac7ff4;
-  --qwik-dark-purple: #713fc2;
-  --qwik-dirty-black: #1d2033;
-  --qwik-dark-background: #151934;
-  --qwik-dark-text: #ffffff;
-}
-
-html {
-  line-height: 1;
-  -webkit-text-size-adjust: 100%;
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-  font-family:
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    "Noto Sans",
-    sans-serif,
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
-    "Noto Color Emoji";
+@font-face {
+  font-family: "Montserrat";
+  src:
+    local("Montserrat"),
+    local("Montserrat Regular"),
+    url("/fonts/montserrat/Variable.ttf") format("truetype-variations");
+  font-weight: 1 999;
+  font-display: swap;
 }
 
 body {
   padding: 0;
   margin: 0;
   line-height: inherit;
+  scroll-behavior: smooth;
+  font-family: "Montserrat";
 }
 
-/**
- * WHAT IS THIS FILE?
- *
- * Globally applied styles. No matter which components are in the page or matching route,
- * the styles in here will be applied to the Document, without any sort of CSS scoping.
- *
- */
-html {
-  -webkit-text-size-adjust: 100%;
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-  font-family:
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    "Noto Sans",
-    sans-serif,
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
-    "Noto Color Emoji";
+img {
+  max-inline-size: 100%;
+}
+
+button:not(:disabled),
+label {
+  cursor: pointer;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  block-size: 100%;
+  overflow: hidden;
 }
 
 body {
-  padding: 0;
-  line-height: inherit;
+  --font-size-xs: clamp(12.8px, 0.17vw + 12.14px, 14.25px);
+  --font-size-s: clamp(16px, 0.34vw + 14.64px, 19px);
+  --font-size-m: clamp(20px, 0.61vw + 17.58px, 25.33px);
+  --font-size-l: clamp(25px, 1vw + 21.02px, 33.76px);
+  --font-size-xl: clamp(31.25px, 1.56vw + 25px, 45px);
+  --font-size-xxl: clamp(39.06px, 2.38vw + 29.55px, 59.99px);
+  --font-size-xxxl: clamp(48.83px, 3.54vw + 34.67px, 79.97px);
 }

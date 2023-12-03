@@ -1,0 +1,30 @@
+:where(.rootX) {
+  block-size: 100%;
+  border: 2px solid #333;
+
+  & h3 {
+    margin: 0;
+    padding: 1em;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  & dl {
+    padding: 1em;
+    margin: 0;
+
+    & > div {
+      display: flex;
+      gap: 1ch;
+    }
+  }
+
+  & dt {
+    flex: 1;
+    font-weight: bold;
+  }
+
+  & dd {
+    display: flex;
+    margin: 0;
+  }
+}

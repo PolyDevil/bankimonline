@@ -1,0 +1,75 @@
+:where(.rootX) {
+  padding-block: 6rem;
+  display: grid;
+  gap: 1rem 0;
+  grid-template: auto / 1fr 1.25rem min(40ch, 100%) 1.25rem 1fr;
+
+  & form {
+    grid-row: 1/2;
+    grid-column: 3/4;
+    border: 1px solid black;
+    padding: 2rem;
+    box-shadow: 6px 6px 0px 0px black;
+
+    display: grid;
+    gap: 1rem;
+  }
+
+  & h1 {
+    margin: 0;
+    text-align: center;
+  }
+
+  & fieldset {
+    padding: 0;
+    margin: 0;
+    border: none;
+    display: grid;
+    gap: 1ch;
+  }
+
+  & legend {
+    position: fixed;
+    inset-inline-start: -100vi;
+  }
+
+  & label {
+    & > span {
+    }
+
+    & input {
+      padding-block: 8px;
+      padding-inline: 12px;
+      font-family: inherit;
+      font-size: inherit;
+      inline-size: 100%;
+      border: 1px solid black;
+      box-shadow: 4px 4px 0px 0px black;
+      transition: box-shadow 0.2s ease-in-out;
+      outline: none;
+
+      &:focus {
+        box-shadow: 8px 8px 0px 0px black;
+      }
+    }
+  }
+
+  & button {
+    background-color: #5865f2;
+    color: #fff;
+    font-weight: 700;
+    padding-block: 8px;
+    padding-inline: 12px;
+    font-family: inherit;
+    font-size: inherit;
+    inline-size: 100%;
+    border: 1px solid black;
+    box-shadow: 4px 4px 0px 0px black;
+    transition: box-shadow 0.2s ease-in-out;
+    outline: none;
+
+    &:focus {
+      box-shadow: 8px 8px 0px 0px black;
+    }
+  }
+}

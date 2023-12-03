@@ -1,0 +1,80 @@
+.rootX {
+  min-inline-size: 120px;
+  max-inline-size: 120px;
+  font-size: 12px;
+
+  & > label {
+    & > span {
+      position: fixed;
+      inset-inline-start: -100vw;
+    }
+
+    & input {
+      padding-block: 8px;
+      padding-inline: 12px;
+      font-family: inherit;
+      font-size: inherit;
+      inline-size: 100%;
+      border: 1px solid black;
+      box-shadow: 4px 4px 0px 0px black;
+      transition: box-shadow 0.2s ease-in-out;
+      outline: none;
+
+      &:focus {
+        box-shadow: 8px 8px 0px 0px black;
+      }
+    }
+  }
+
+  & dialog {
+    padding: 0;
+    inline-size: var(--inline-size, 400px);
+    inset-block-end: auto;
+    inset-inline-end: auto;
+    border: 1px solid black;
+    box-shadow: 8px 8px 0px 0px black;
+
+    &::backdrop {
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+
+    & fieldset {
+      margin: 0;
+      padding: 0;
+    }
+
+    & legend {
+      position: fixed;
+      inset-inline-start: -100vw;
+    }
+
+    & label {
+      display: block;
+      position: relative;
+      overflow: hidden;
+
+      &:has(input:checked) {
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      & > span {
+        display: grid;
+        align-items: center;
+        justify-content: start;
+        padding-block: 8px;
+        padding-inline: 12px;
+        font-family: inherit;
+        font-size: inherit;
+      }
+
+      & input {
+        appearance: none;
+        display: grid;
+        position: absolute;
+        inset: 0;
+        outline: none;
+        transition: background-color 0.2s ease-in-out;
+      }
+    }
+  }
+}

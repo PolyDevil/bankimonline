@@ -1,0 +1,37 @@
+:where(.rootX) {
+  font-size: var(--font-size-m);
+  background-color: #303846;
+  color: #ebedf0;
+
+  & footer {
+    max-inline-size: 75rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+    padding-block: 2rem;
+
+    display: grid;
+    grid-template: auto auto / auto;
+    align-items: center;
+    gap: 1ch;
+  }
+
+  & address {
+    font-style: normal;
+  }
+
+  & b {
+  }
+
+  & em {
+    font-style: normal;
+  }
+
+  & small {
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .rootX footer {
+    grid-template: auto / minmax(0, 1fr) auto;
+  }
+}

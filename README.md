@@ -1,65 +1,158 @@
-# Qwik City App ⚡️
+# Техническое задание на позицию Fronend Developer
 
-- [Qwik Docs](https://qwik.builder.io/)
-- [Discord](https://qwik.builder.io/chat)
-- [Qwik GitHub](https://github.com/BuilderIO/qwik)
-- [@QwikDev](https://twitter.com/QwikDev)
-- [Vite](https://vitejs.dev/)
+## Написать приложение, которое состоит из трех страниц:
 
----
+- 1. Общая страница со списком покемонов
+- 2. Страница авторизации (вход по номеру телефона и по паролю)
+- 3. Страница пользователя со списком личных покемонов
 
-## Project Structure
+## Условия:
 
-This project is using Qwik with [QwikCity](https://qwik.builder.io/qwikcity/overview/). QwikCity is just an extra set of tools on top of Qwik to make it easier to build a full site, including directory-based routing, layouts, and more.
+### Роутинг:
 
-Inside your project, you'll see the following directory structure:
+- Общая страница доступна без авторизации, путь к странице - `/`
+- Страница авторизации расположена по адресу `/auth/sign-in`
+- Страница пользоваля со списком личных покемонов доступна по адресу `/deck`
+
+### Редиректы:
+
+- Без авторизации при попытке открыть страницу `/deck` должен быть редирект на домашнюю страницу (`/`)
+- Без авторизации в хедере показываем ссылку на домашнюю страницу и на страницу авторизации - `/auth/sign-in`
+- После авторизации при прямом заходе на страницу `/auth/sign-in` редирект происходит на главную\домашнюю страницу
+- После авторизации в хедере показываем ссылку на домашнюю страницу, на страницу дека - `/deck` и ссылку\кнопку для разлогина
+
+#### Авторизация:
+
+Пример запроса:
 
 ```
-├── public/
-│   └── ...
-└── src/
-    ├── components/
-    │   └── ...
-    └── routes/
-        └── ...
+fetch("https://polydevil-bankimonline.builtwithdark.com/auth/sign-in", {
+  method: "post",
+  body: JSON.stringify({
+    phone: "800555555",
+    password: "pressF11",
+  }),
+})
 ```
 
-- `src/routes`: Provides the directory-based routing, which can include a hierarchy of `layout.tsx` layout files, and an `index.tsx` file as the page. Additionally, `index.ts` files are endpoints. Please see the [routing docs](https://qwik.builder.io/qwikcity/routing/overview/) for more info.
+Сервер возвращает ответы:
 
-- `src/components`: Recommended directory for components.
-
-- `public`: Any static assets, like images, can be placed in the public directory. Please see the [Vite public directory](https://vitejs.dev/guide/assets.html#the-public-directory) for more info.
-
-## Add Integrations and deployment
-
-Use the `npm run qwik add` command to add additional integrations. Some examples of integrations includes: Cloudflare, Netlify or Express Server, and the [Static Site Generator (SSG)](https://qwik.builder.io/qwikcity/guides/static-site-generation/).
-
-```shell
-npm run qwik add # or `yarn qwik add`
+```
+{ token: '7e49213a-6d11-44dd-accc-374981e3f491' }
+// or
+{ error: 'invalid credentials' }
 ```
 
-## Development
+#### Страница со списком покемонов:
 
-Development mode uses [Vite's development server](https://vitejs.dev/). The `dev` command will server-side render (SSR) the output during development.
+- отображает до 6-ти элементов на одной странице (выводить все данные не обязательно, имени и пары характеристик достаточно)
+- имеет пагинацию
+- имеет сортировку (по дате, по имени)
+- имеет поиск
 
-```shell
-npm start # or `yarn start`
+Пример запроса:
+
+```
+fetch("https://polydevil-bankimonline.builtwithdark.com/pokemon", {
+  method: "post",
+  body: JSON.stringify({
+    page: 1,
+    pageSize: 6,
+    q: "x",
+    sorting: "id", // "id" | "name"
+  }),
+})
 ```
 
-> Note: during dev mode, Vite may request a significant number of `.js` files. This does not represent a Qwik production build.
+Пример ответа:
 
-## Preview
-
-The preview command will create a production build of the client modules, a production build of `src/entry.preview.tsx`, and run a local server. The preview server is only for convenience to preview a production build locally and should not be used as a production server.
-
-```shell
-npm run preview # or `yarn preview`
+```
+{
+  data: Array<{
+    attack: number,
+    attackSpeed: number,
+    defense: number,
+    defenseSpeed: number,
+    generation: number,
+    hp: number,
+    hpTotal: number,
+    id: number,
+    isLegendary: boolean,
+    name: string,
+    type1: string,
+    type2: string,
+  }>,
+  page: number, // номер текущей страницы, отчет с 1
+  pageSize: number, // размер страницы
+  query: string, // поисковый запрос
+  total : number, // общее - кол-во элементов
+}
 ```
 
-## Production
+#### Страница со списком личных покемонов:
 
-The production build will generate client and server modules by running both client and server build commands. The build command will use Typescript to run a type check on the source code.
+- показывает список покемонов (без пагинации, сортировки, фильтрации, поиска)
 
-```shell
-npm run build # or `yarn build`
+Для получения данных нужен токен, который получаем после авторизации.
+Пример запроса:
+
 ```
+fetch(
+  `https://polydevil-bankimonline.builtwithdark.com/deck`,
+  {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+      token: /* подставляем токен */
+    },
+  }
+)
+```
+
+Ответ содержим массив покемонов:
+
+```
+Array<{
+  attack: number,
+  attackSpeed: number,
+  defense: number,
+  defenseSpeed: number,
+  generation: number,
+  hp: number,
+  hpTotal: number,
+  id: number,
+  isLegendary: boolean,
+  name: string,
+  type1: string,
+  type2: string,
+}>
+```
+
+### Стек\технологии
+
+Можно использовать фреймворк\библиотеку (React/Angular) или сделать решение без них (vanilla JS);
+Можно использовать любой CSS фреймворк или писать на vanilla css;
+Предпочтителен Serverside rendering, но если сделали SPA, то придется аргументировать почему сделали такой выбор и в чем плюсы и минусы.
+Подключать сторонние библиотеки можно, но нужно будет аргументировать причину решения и его цену\эффективность.
+
+## Сдача проекта:
+
+Код заливаем в публичный репозиторий (гитхаб\гитлаб или что-то еще), скидываем ссылку на репозиторий.
+Нам нужна ссылка на демо приложения, можно использовать cloudflare, vercel, netlify и т.п.
+
+### Что будет использоваться при оценке решения:
+
+- внешний вид не оценивается (важная функциональность)
+- валидность html https://validator.w3.org/
+- Lighthouse score (добиваться 100 по всем показателям не обязательно), но мы используем этот инструмент при проверке
+- разбивка кода на компоненты и их организация, связанность кода
+- UX (проверяем что сайтом можно пользоваться на мобильном, десктопе, на ultra-wide мониторе)
+- качество и количество разметки (излишняя вложенность, использование тегов не по их назначению)
+- организация стилей
+- количество js кода (мы за Progressive enhancement и считаем, что js нужен чтобы улучшить поведение и что js не должен быть необходимым для того, чтобы сайт хотя бы работал)
+
+### На каких устройствах будет просматриваться демо:
+
+- десктопный сафари, десктопный хром (последние версии)
+- мобильный сафари, мобильный хром на ios
+- мобильный сафари, мобильный хром на android

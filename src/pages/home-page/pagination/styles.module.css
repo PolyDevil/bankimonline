@@ -1,0 +1,54 @@
+.rootX {
+  border: 1px solid black;
+  box-shadow: 4px 4px 0px 0px black;
+  transition: box-shadow 0.2s ease-in-out;
+  overflow: hidden;
+
+  &:focus-within {
+    box-shadow: 8px 8px 0px 0px black;
+  }
+
+  & ol {
+    list-style: none;
+    display: grid;
+    grid-auto-columns: 3rem;
+    grid-auto-flow: column;
+    justify-content: center;
+    align-items: baseline;
+
+    & li > div {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: currentColor;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    & a {
+      text-decoration: none;
+      display: flex;
+      aspect-ratio: 1;
+      align-items: center;
+      justify-content: center;
+      color: currentColor;
+      transition: background-color 0.2s ease-in-out;
+      outline: none;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      &:focus {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      &[aria-current="page"] {
+        font-weight: bold;
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}

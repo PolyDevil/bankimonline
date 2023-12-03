@@ -1,38 +1,45 @@
-import { component$, Slot, useStyles$ } from "@builder.io/qwik";
+import { component$, Slot } from "@builder.io/qwik";
 import { routeLoader$ } from "@builder.io/qwik-city";
-import type { RequestHandler } from "@builder.io/qwik-city";
 
-import Header from "~/components/starter/header/header";
-import Footer from "~/components/starter/footer/footer";
+import HeaderAuthorized from "~/layout/components/header/authorized";
+import HeaderNotAuthorized from "~/layout/components/header/not-authorized";
+import Footer from "~/layout/components/footer";
 
-import styles from "./styles.css?inline";
+import styles from "./style.module.css";
 
-export const onGet: RequestHandler = async ({ cacheControl }) => {
-  // Control caching for this request for best performance and to reduce hosting costs:
-  // https://qwik.builder.io/docs/caching/
-  cacheControl({
-    // Always serve a cached response by default, up to a week stale
-    staleWhileRevalidate: 60 * 60 * 24 * 7,
-    // Max once every 5 seconds, revalidate on the server to get a fresh version of this page
-    maxAge: 5,
-  });
-};
+export const useSession = routeLoader$(async ({ cookie }) => {
+  const maybeToken = cookie.get("token");
 
-export const useServerTimeLoader = routeLoader$(() => {
+  if (maybeToken && maybeToken.value && maybeToken.value.length > 0) {
+    return {
+      state: "auth",
+      token: maybeToken.value,
+    };
+  }
+
   return {
-    date: new Date().toISOString(),
+    state: "no-auth",
   };
 });
 
 export default component$(() => {
-  useStyles$(styles);
+  const session = useSession();
+
   return (
-    <>
-      <Header />
-      <main>
-        <Slot />
-      </main>
-      <Footer />
-    </>
+    <div class={styles.rootX}>
+      {session.value.state === "auth" ? (
+        <HeaderAuthorized />
+      ) : (
+        <HeaderNotAuthorized />
+      )}
+
+      <div class={styles.scrollableX}>
+        <main>
+          <Slot />
+        </main>
+
+        <Footer />
+      </div>
+    </div>
   );
 });

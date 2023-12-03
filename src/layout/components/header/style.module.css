@@ -1,0 +1,63 @@
+:where(.rootX) {
+  font-size: var(--font-size-sm);
+  background-color: #303846;
+  color: #ebedf0;
+
+  & nav {
+    max-inline-size: 75rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  & ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  & li {
+    block-size: 100%;
+  }
+
+  & a {
+    line-height: 1;
+    block-size: 100%;
+    inline-size: fit-content;
+    font-family: inherit;
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: 1em;
+    padding-inline: 0.75em;
+    gap: 1ch;
+    transition: background-color 200ms ease-out;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.authorizedX {
+  grid-template: auto / minmax(0, 1fr) auto auto;
+
+  & li:first-of-type a {
+    justify-content: start;
+  }
+}
+
+.notAuthorizedX {
+  grid-template: auto / minmax(0, 1fr) auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .authorizedX li:last-of-type a span,
+  .notAuthorizedX li:last-of-type a span {
+    position: fixed;
+    inset-inline-start: -100vi;
+  }
+}

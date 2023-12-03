@@ -1,0 +1,23 @@
+:where(.rootX) {
+  display: grid;
+  grid-template: auto minmax(0, 1fr) / auto;
+  block-size: 100%;
+  min-block-size: 100svh;
+  overflow: hidden;
+
+  & main {
+    block-size: 100%;
+  }
+}
+
+.scrollableX {
+  display: grid;
+  block-size: 100%;
+  overflow: hidden auto;
+}
+
+@media only screen and (min-width: 600px) {
+  :where(.scrollableX) {
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+}
