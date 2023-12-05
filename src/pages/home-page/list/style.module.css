@@ -3,7 +3,7 @@
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 1rem;
+  gap: 0.6em;
   grid-template-columns: repeat(1, minmax(0, 1fr));
 
   & li {
@@ -13,12 +13,14 @@
 
 @media only screen and (min-width: 600px) {
   :where(.rootX) {
+    gap: 1.2em;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media only screen and (min-width: 900px) {
   :where(.rootX) {
+    gap: 1.8em;
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

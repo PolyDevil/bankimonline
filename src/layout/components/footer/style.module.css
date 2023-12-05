@@ -1,37 +1,50 @@
 :where(.rootX) {
   font-size: var(--font-size-m);
-  background-color: #303846;
-  color: #ebedf0;
+  background: var(--gray-700, #3f3f46);
+  font-weight: 400;
+  color: var(--gray-400, #a1a1aa);
 
   & footer {
-    max-inline-size: 75rem;
+    block-size: 100%;
+    max-inline-size: 90rem;
     margin-inline: auto;
-    padding-inline: 1.25rem;
-    padding-block: 2rem;
+    padding-inline: 1.25em;
+    padding-block: 2em;
 
     display: grid;
     grid-template: auto auto / auto;
     align-items: center;
-    gap: 1ch;
+    gap: 1.5em;
+
+    & > div {
+      display: grid;
+      gap: 0.6rem;
+
+      & span {
+        font-size: 1.25rem;
+      }
+    }
   }
 
-  & address {
-    font-style: normal;
-  }
-
-  & b {
+  & strong {
+    color: var(--gray-300, #d4d4d8);
+    font-size: 2rem;
   }
 
   & em {
     font-style: normal;
+    color: var(--yellow-300, #fde047);
   }
 
   & small {
+    font-size: 1.25rem;
   }
 }
 
 @media only screen and (min-width: 600px) {
   .rootX footer {
     grid-template: auto / minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 1ch;
   }
 }

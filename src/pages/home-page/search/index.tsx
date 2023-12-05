@@ -27,6 +27,7 @@ export default component$((props: props) => {
         <span>search</span>
         <input
           autoComplete="off"
+          placeholder="Search..."
           type="search"
           name={name}
           value={state.search}

@@ -11,11 +11,14 @@ export default component$<props>((props) => {
   return (
     <div class={c(props.class, styles.rootX)}>
       <footer>
-        <address>
-          Made in <b>Dresden</b> with <em title="love">❤️</em>
-        </address>
+        <div>
+          <strong>Company Name</strong>
+          <div>
+            Made by <em>Poly</em>
+          </div>
+        </div>
 
-        <small>Copyright © 2023</small>
+        <small>2023 © Все права защищены</small>
       </footer>
     </div>
   );

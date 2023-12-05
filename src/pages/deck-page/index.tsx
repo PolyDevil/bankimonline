@@ -14,14 +14,17 @@ type props = {
 export default component$<props>((props) => {
   return (
     <div class={c(props.class, styles.rootX)}>
-      <h1>Deck</h1>
-      <ol>
-        {props.data.map((e) => (
-          <li key={e.id}>
-            <Card data={e} />
-          </li>
-        ))}
-      </ol>
+      <section>
+        <h1>My Deck</h1>
+
+        <ol>
+          {props.data.map((e) => (
+            <li key={e.id}>
+              <Card data={e} />
+            </li>
+          ))}
+        </ol>
+      </section>
     </div>
   );
 });

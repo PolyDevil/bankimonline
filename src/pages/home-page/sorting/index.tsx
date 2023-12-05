@@ -32,7 +32,7 @@ export default component$((props: props) => {
 
       if (formNode) {
         const { sorting: value } = Object.fromEntries(
-          new FormData(formNode as HTMLFormElement)
+          new FormData(formNode as HTMLFormElement),
         ) as form;
 
         nav(
@@ -40,7 +40,7 @@ export default component$((props: props) => {
             refine(state, {
               type: "sorting",
               value,
-            })
+            }),
         );
       }
     };
@@ -60,15 +60,15 @@ export default component$((props: props) => {
 
               dialogRef.value!.style.setProperty(
                 "--inline-size",
-                rect.width + "px"
+                rect.width + "px",
               );
               dialogRef.value!.style.setProperty(
                 "inset-block-start",
-                rect.height + rect.y + "px"
+                rect.height + rect.y + "px",
               );
               dialogRef.value!.style.setProperty(
                 "inset-inline-start",
-                rect.x + "px"
+                rect.x + "px",
               );
               dialogRef.value?.showModal();
 
@@ -139,28 +139,50 @@ export default component$((props: props) => {
       preventdefault:submit
     >
       <label>
-        <span>sorting</span>
+        <span>
+          <b>sorting</b>
+          <svg
+            role="presentation"
+            width="20"
+            height="18"
+            viewBox="0 0 20 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15 17L19 13M1 1H14H1ZM1 5H10H1ZM1 9H10H1ZM15 5V17V5ZM15 17L11 13L15 17Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
         <input
           autoComplete="off"
           readOnly={true}
           role="combobox"
           type="text"
           name="sortingName"
-          value={sorting.name}
-          onClick$={(e) => {
-            const rect = (e.target as HTMLInputElement).getBoundingClientRect();
+          value={`Sorting: by ${sorting.name}`}
+          onClick$={() => {
+            const rect = (
+              document
+                .querySelector(`#${id}`)
+                ?.querySelector("label") as HTMLLabelElement
+            ).getBoundingClientRect();
 
             dialogRef.value!.style.setProperty(
               "--inline-size",
-              rect.width + "px"
+              rect.width + "px",
             );
             dialogRef.value!.style.setProperty(
               "inset-block-start",
-              rect.height + rect.y + "px"
+              rect.height + rect.y + "px",
             );
             dialogRef.value!.style.setProperty(
-              "inset-inline-start",
-              rect.x + "px"
+              "inset-inline-end",
+              window.innerWidth - rect.right + "px",
             );
             dialogRef.value?.showModal();
 

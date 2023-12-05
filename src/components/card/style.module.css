@@ -1,30 +1,74 @@
 :where(.rootX) {
   block-size: 100%;
-  border: 2px solid #333;
+  border-radius: 0.75rem;
+  background: rgba(161, 161, 170, 0.2);
+  font-weight: 400;
+  display: grid;
+  --_cover-size: 2em;
+  grid-template: var(--_cover-size) auto minmax(0, 1fr) / max(100%);
+
+  & > span {
+    grid-column: 1/-1;
+    grid-row: 1/3;
+    color: rgba(250, 250, 250, 0.3);
+    font-size: var(--_cover-size);
+    text-align: end;
+    display: block;
+    padding: 0.1em 0.2em;
+  }
 
   & h3 {
+    grid-column: 1/-1;
+    grid-row: 2/4;
     margin: 0;
-    padding: 1em;
-    background: rgba(0, 0, 0, 0.2);
+    padding-block-start: 0.4em;
+    padding-inline: 1.9rem;
+    color: var(--gray-50, #fafafa);
+    font-size: 1.125em;
+    font-weight: 600;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   & dl {
-    padding: 1em;
+    grid-column: 1/-1;
+    grid-row: 4/5;
+    padding-inline: 1.9rem;
+    padding-block-end: 1.9rem;
     margin: 0;
 
     & > div {
       display: flex;
+      align-items: baseline;
       gap: 1ch;
     }
   }
 
   & dt {
     flex: 1;
-    font-weight: bold;
+    color: var(--gray-300, #d4d4d8);
+    font-size: 1em;
   }
 
   & dd {
     display: flex;
     margin: 0;
+    color: var(--gray-50, #fafafa);
+    font-size: 1.25em;
+    font-weight: 700;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .rootX {
+    --_cover-size: 3em;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .rootX {
+    --_cover-size: 4em;
   }
 }

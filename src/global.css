@@ -1,11 +1,44 @@
 @font-face {
-  font-family: "Montserrat";
-  src:
-    local("Montserrat"),
-    local("Montserrat Regular"),
-    url("/fonts/montserrat/Variable.ttf") format("truetype-variations");
-  font-weight: 1 999;
+  font-family: "Roboto";
+  src: url("/fonts/roboto/Roboto-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
   font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/roboto/Roboto-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/roboto/Roboto-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/roboto/Roboto-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/roboto/Roboto-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/roboto/Roboto-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
 }
 
 body {
@@ -13,7 +46,7 @@ body {
   margin: 0;
   line-height: inherit;
   scroll-behavior: smooth;
-  font-family: "Montserrat";
+  font-family: "Roboto";
 }
 
 img {

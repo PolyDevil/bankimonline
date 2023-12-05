@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
+import { useLocation, Link } from "@builder.io/qwik-city";
 import c from "clsx";
 
 import styles from "../style.module.css";
@@ -9,23 +9,42 @@ type props = {
 };
 
 export default component$<props>((props) => {
+  const loc = useLocation();
+
   return (
     <header class={c(props.class, styles.rootX)}>
       <nav>
         <ul role="list" class={styles.authorizedX}>
           <li>
-            <Link href="/">
-              <span>HomePage</span>
+            <Link
+              href="/"
+              aria-current={loc.url.pathname === "/" ? "page" : "false"}
+            >
+              <span>
+                Home<b>Page</b>
+              </span>
             </Link>
           </li>
+
           <li>
-            <Link href="/deck">
-              <span>My Deck</span>
+            <Link
+              href="/deck"
+              aria-current={loc.url.pathname === "/deck/" ? "page" : "false"}
+            >
+              <span>
+                <b>My </b>Deck
+              </span>
             </Link>
           </li>
+
           <li>
-            <Link href="/auth/logout">
-              <span>Logout</span>
+            <Link
+              href="/auth/logout"
+              aria-current={
+                loc.url.pathname === "/auth/logout/" ? "page" : "false"
+              }
+            >
+              <b>Logout</b>
               <svg
                 aria-label="Выйти из аккаунта"
                 xmlns="http://www.w3.org/2000/svg"

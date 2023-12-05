@@ -1,10 +1,12 @@
 :where(.rootX) {
-  font-size: var(--font-size-sm);
-  background-color: #303846;
-  color: #ebedf0;
+  border-bottom: 1px solid var(--gray-500, #71717a);
+  background: var(--gray-800, #27272a);
+  color: var(--gray-400, #a1a1aa);
+  font-size: var(--font-size-m);
+  font-weight: 400;
 
   & nav {
-    max-inline-size: 75rem;
+    max-inline-size: 90rem;
     margin-inline: auto;
     padding-inline: 1.25rem;
   }
@@ -22,23 +24,32 @@
   }
 
   & a {
+    color: var(--gray-400, #a1a1aa);
+    font-size: inherit;
     line-height: 1;
     block-size: 100%;
     inline-size: fit-content;
     font-family: inherit;
-    color: inherit;
     text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-block: 1em;
-    padding-inline: 0.75em;
+    padding-block: 1.125em;
+    padding-inline: 1.125em;
     gap: 1ch;
     transition: background-color 200ms ease-out;
+
+    &[aria-current="page"] {
+      color: var(--gray-50, #fafafa);
+    }
 
     &:hover {
       background-color: rgba(0, 0, 0, 0.2);
     }
+  }
+
+  & b {
+    font-weight: inherit;
   }
 }
 
@@ -55,8 +66,8 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .authorizedX li:last-of-type a span,
-  .notAuthorizedX li:last-of-type a span {
+  .authorizedX b,
+  .notAuthorizedX b {
     position: fixed;
     inset-inline-start: -100vi;
   }

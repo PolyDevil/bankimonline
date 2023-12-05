@@ -14,12 +14,14 @@ type props = {
 export default component$<props>((props) => {
   return (
     <div class={c(props.class, styles.rootX)}>
-      <search>
-        <Sorting />
-        <Search />
-      </search>
-      <List class={styles.listX} />
-      <Pagination class={styles.paginationX} />
+      <section>
+        <search>
+          <Search />
+          <Sorting />
+        </search>
+        <List />
+        <Pagination />
+      </section>
     </div>
   );
 });

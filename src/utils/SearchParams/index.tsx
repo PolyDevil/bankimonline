@@ -14,25 +14,25 @@ export namespace Sorting {
 
   export const options: Array<option> = [
     {
-      name: "Номер",
+      name: "id",
       value: "id",
       prev: "defense",
       next: "name",
     },
     {
-      name: "Имя",
+      name: "name",
       value: "name",
       prev: "id",
       next: "attack",
     },
     {
-      name: "Атака",
+      name: "attack",
       value: "attack",
       prev: "name",
       next: "defense",
     },
     {
-      name: "Защита",
+      name: "defense",
       value: "defense",
       prev: "attack",
       next: "id",

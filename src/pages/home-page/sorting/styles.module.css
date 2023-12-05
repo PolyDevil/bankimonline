@@ -1,36 +1,37 @@
-.rootX {
-  min-inline-size: 120px;
-  max-inline-size: 120px;
-  font-size: 12px;
+:where(.rootX) {
+  font-size: var(--font-size-m);
+  color: var(--gray-400, #a1a1aa);
 
   & > label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    block-size: 100%;
+    aspect-ratio: 1;
+    border-radius: 0.125rem;
+    border: 1px solid rgba(212, 212, 216, 0.5);
+    background: var(--gray-600, #52525b);
+    padding-block: 0.35em;
+
     & > span {
-      position: fixed;
-      inset-inline-start: -100vw;
+      & b {
+        position: fixed;
+        inset-inline-start: -100vw;
+      }
     }
 
     & input {
-      padding-block: 8px;
-      padding-inline: 12px;
-      font-family: inherit;
-      font-size: inherit;
-      inline-size: 100%;
-      border: 1px solid black;
-      box-shadow: 4px 4px 0px 0px black;
-      transition: box-shadow 0.2s ease-in-out;
-      outline: none;
-
-      &:focus {
-        box-shadow: 8px 8px 0px 0px black;
-      }
+      position: fixed;
+      inset-inline-start: -100vw;
     }
   }
 
   & dialog {
     padding: 0;
+    min-inline-size: 280px;
     inline-size: var(--inline-size, 400px);
     inset-block-end: auto;
-    inset-inline-end: auto;
+    inset-inline-start: auto;
     border: 1px solid black;
     box-shadow: 8px 8px 0px 0px black;
 
@@ -75,6 +76,31 @@
         outline: none;
         transition: background-color 0.2s ease-in-out;
       }
+    }
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .rootX {
+    & > label {
+      aspect-ratio: unset;
+
+      & > span {
+        position: fixed;
+        inset-inline-start: -100vw;
+      }
+    }
+
+    & input {
+      position: static;
+      border: none;
+      background: none;
+      color: inherit;
+      font-family: inherit;
+      font-size: inherit;
+      inline-size: 100%;
+      padding-block: 0;
+      padding-inline: 0.5em;
     }
   }
 }

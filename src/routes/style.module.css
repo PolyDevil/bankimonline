@@ -7,6 +7,7 @@
 
   & main {
     block-size: 100%;
+    background: var(--gray-900, #18181b);
   }
 }
 
@@ -16,8 +17,8 @@
   overflow: hidden auto;
 }
 
-@media only screen and (min-width: 600px) {
+/* @media only screen and (min-width: 600px) {
   :where(.scrollableX) {
     grid-template-rows: minmax(0, 1fr) auto;
   }
-}
+} */
